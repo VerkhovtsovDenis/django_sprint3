@@ -38,10 +38,17 @@ class Post(models.Model):
     title = CharField(max_length=256, blank=False)
     text = TextField(blank=False)
     pub_date = DateTimeField(blank=False)
-    author = CharField(max_length=256, blank=False)
     author = ForeignKey(User, on_delete=models.CASCADE,
-                        related_name='fk_publications')
-    location = ForeignKey(Location, on_delete=models.SET_NULL, blank=True)
+                        related_name='fk_author',
+                        blank=False)
+    location = ForeignKey(Location, on_delete=models.SET_NULL,
+                          related_name='fk_location',
+                          blank=False,
+                          null=True)
+    category = ForeignKey(Category, on_delete=models.SET_NULL,
+                          related_name='fk_category',
+                          blank=False,
+                          null=True)
     is_published = BooleanField(default=True, blank=False)
     created_at = DateTimeField(auto_created=True, blank=False)
 
