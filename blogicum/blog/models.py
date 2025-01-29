@@ -36,6 +36,7 @@ class Category(models.Model):
 
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+        ordering = ['title']
 
     def __str__(self):
         """Возвращает заголовок тематической категории."""
@@ -61,6 +62,7 @@ class Location(models.Model):
 
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
+        ordering = ['name']
 
     def __str__(self):
         """Возвращает наименование георагафической метки."""
@@ -107,6 +109,7 @@ class Post(models.Model):
 
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
+        ordering = ['title']
 
     def __str__(self):
         """Возвращает заголовок публикации."""
