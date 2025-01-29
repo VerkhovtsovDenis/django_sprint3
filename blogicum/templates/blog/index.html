@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+  Лента записей
+{% endblock %}
+{% block content %}
+  <h1 class="pb-2 mb-0">Главная страница</h1>
+  <hr />
+
+  {% include 'includes/generate_posts_list.html' %}
+{% endblock %}
