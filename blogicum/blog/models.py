@@ -1,5 +1,8 @@
+"""This module is described db Models."""
+
 from django.db import models
-from django.db.models import CharField, TextField, DateTimeField, ForeignKey, BooleanField, SlugField
+from django.db.models import CharField, TextField, DateTimeField, ForeignKey, \
+    BooleanField, SlugField
 from django.contrib.auth import get_user_model
 
 
