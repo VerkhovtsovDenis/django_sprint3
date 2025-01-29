@@ -2,8 +2,14 @@
 
 from django.shortcuts import render
 from blog.models import Post, Category
-from datetime import datetime
 from django.shortcuts import get_object_or_404
+
+from django.utils import timezone
+
+
+def __get_today__():
+    """Возвращает текущее время и дату."""
+    return timezone.now()
 
 
 def index(request):
@@ -11,7 +17,7 @@ def index(request):
     template = 'blog/index.html'
 
     published_category = Category.objects.filter(is_published=True)
-    today = datetime.today().date()
+    today = __get_today__()
 
     context = {
         'post_list': Post.objects.filter(pub_date__lte=today,
@@ -27,7 +33,7 @@ def post_detail(request, post_id):
 
     published_category = Category.objects.filter(is_published=True)
 
-    today = datetime.today().date()
+    today = __get_today__()
     post = get_object_or_404(Post,
                              id=post_id,
                              is_published=True,
@@ -44,7 +50,7 @@ def category_posts(request, category_slug):
     """Возвращает страницу категории по её slug."""
     template = 'blog/category.html'
 
-    today = datetime.today().date()
+    today = __get_today__()
 
     category_id = get_object_or_404(Category,
                                     slug=category_slug,
