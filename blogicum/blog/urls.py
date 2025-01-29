@@ -1,3 +1,5 @@
+"""This module describes url-routing."""
+
 from django.urls import path
 
 from . import views
