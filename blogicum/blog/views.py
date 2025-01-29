@@ -14,11 +14,9 @@ def index(request):
     today = datetime.today().date()
 
     context = {
-        'post_list': Post.objects.filter(
-                                         pub_date__lte=today,
+        'post_list': Post.objects.filter(pub_date__lte=today,
                                          is_published=True,
-                                         category__in=published_category
-        )[:5]
+                                         category__in=published_category)[:5]
     }
     return render(request, template, context)
 
@@ -30,13 +28,11 @@ def post_detail(request, post_id):
     published_category = Category.objects.filter(is_published=True)
 
     today = datetime.today().date()
-    post = get_object_or_404(
-                             Post,
+    post = get_object_or_404(Post,
                              id=post_id,
                              is_published=True,
                              pub_date__lte=today,
-                             category__in=published_category
-           )
+                             category__in=published_category)
 
     context = {
         'post': post
@@ -53,11 +49,9 @@ def category_posts(request, category_slug):
     category_id = get_object_or_404(Category,
                                     slug=category_slug,
                                     is_published=True).id
-    filtered_posts = Post.objects.filter(
-                                         category=category_id,
+    filtered_posts = Post.objects.filter(category=category_id,
                                          pub_date__lte=today,
-                                         is_published=True
-    )
+                                         is_published=True)
 
     context = {
         'category': category_slug,
