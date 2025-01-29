@@ -30,9 +30,9 @@ class Category(models.Model):
 чтобы скрыть публикацию.'
     )
     created_at = DateTimeField(
-                               auto_created=True,
                                blank=False,
-                               verbose_name='Добавлено'
+                               verbose_name='Добавлено',
+                               auto_now_add=True
     )
 
     class Meta:
@@ -61,10 +61,10 @@ class Location(models.Model):
                                 verbose_name='Опубликовано'
     )
     created_at = DateTimeField(
-                               auto_created=True,
                                blank=False,
-                               verbose_name='Добавлено'
-    )   
+                               verbose_name='Добавлено',
+                               auto_now_add=True
+    )
 
     class Meta:
         """Зарещенный на територии РФ класс, \
@@ -93,7 +93,7 @@ class Post(models.Model):
                         User,
                         on_delete=models.CASCADE,
                         related_name='fk_author',
-                        blank=False, 
+                        blank=False,
                         verbose_name='Автор публикации'
     )
     location = ForeignKey(
@@ -120,7 +120,8 @@ class Post(models.Model):
     created_at = DateTimeField(
                                auto_created=True,
                                blank=False,
-                               verbose_name='Добавлено'
+                               verbose_name='Добавлено',
+                               auto_now_add=True
     )
 
     class Meta:
